@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: FindType API Swagger
+  description: API สำหรับการจัดการการเข้าสู่ระบบและการลงทะเบียนผู้ใช้
+  version: 1.0.0
+servers:
+  - url: http://localhost:3003
+paths:
+  /auth/login:
+    post:
+      summary: 'Login a user'
+      description: 'Authenticate a user by username/email and password.'
+      tags:
+        - Authenticate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: 'johndoe@example.com'
+                password:
+                  type: string
+                  example: 'password123'
+      responses:
+        200:
+          description: 'Login successful'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  taskStatus:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'สำเร็จ'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      phone_number:
+                        type: string
+                      address:
+                        type: string
+                      citizen_id:
+                        type: string
+                      profile:
+                        type: string
+                      created_date:
+                        type: string
+                      token:
+                        type: string
+  /auth/register:
+    post:
+      summary: 'Register a new user'
+      description: 'Register a new user by providing username, password, email, phone number, address, and citizen ID.'
+      tags:
+        - Authenticate
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: 'janedoe'
+                password:
+                  type: string
+                  example: 'password123'
+                email:
+                  type: string
+                  example: 'janedoe@example.com'
+                phone_number:
+                  type: string
+                  example: '0812345678'
+                address:
+                  type: string
+                  example: '123 Main St, Bangkok'
+                citizen_id:
+                  type: string
+                  example: '1234567890123'
+                profile:
+                  type: string
+                  format: binary
+      responses:
+        201:
+          description: 'User successfully registered'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 201
+                  taskStatus:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'สมัครสมาชิกสำเร็จ'
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      password:
+                        type: string
