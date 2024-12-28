@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
-const { swaggerSetup, swaggerDocument } = require('./config/swagger/swagger.js');
+const { swaggerSetup } = require('./config/swagger/swagger.js');
 const { db } = require('./config/database.js');
 const { configCors } = require('./config/cors.js');
 
