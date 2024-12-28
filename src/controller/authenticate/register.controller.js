@@ -10,6 +10,10 @@ const registerController = async (req, res) => {
     const { username, password, email, phone_number, address, citizen_id } = req.body;
     const file = req.file;
 
+    if (!username || !password || !email || !phone_number || !address || !citizen_id) {
+      return res.status(500).json({ statusCode: 500, taskStatus: false, message: 'ไม่พบข้อมูลการสมัครสมาชิก' });
+    }
+
     //** เช็คข้อมูลใน database ว่ามีผู้ใช้งานนี้รึยัง */
     const [existingUser] = await db.promise().query('SELECT * FROM users WHERE email = ? OR username = ? OR phone_number = ?', [email, username, phone_number]);
     if (existingUser.length > 0) {

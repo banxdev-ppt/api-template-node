@@ -75,6 +75,13 @@ paths:
           multipart/form-data:
             schema:
               type: object
+              required:
+                - username
+                - password
+                - email
+                - phone_number
+                - address
+                - citizen_id
               properties:
                 username:
                   type: string
@@ -94,7 +101,7 @@ paths:
                 citizen_id:
                   type: string
                   example: '1234567890123'
-                profile:
+                profile_image:
                   type: string
                   format: binary
       responses:
